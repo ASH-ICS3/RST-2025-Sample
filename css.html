@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Styling</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>CSS Styling</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is CSS?</h2>
+            <p>CSS (Cascading Style Sheets) is a language used to describe the presentation of a document written in HTML. It controls the layout, colors, fonts, and other visual aspects of web pages.</p>
+            <p>CSS works by selecting HTML elements and applying styles to them using property-value pairs.</p>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>Basic CSS Syntax</h3>
+            <pre><code>selector {
+    property: value;
+    another-property: value;
+}</code></pre>
+
+            <h3>Common CSS Properties</h3>
+            <pre><code>/* Change text color */
+h1 {
+    color: #2c3e50;
+}
+
+/* Add background and padding */
+.container {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Modify font and border */
+button {
+    font-family: Arial, sans-serif;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+}</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            <div id="styleDemo" class="result" style="padding: 20px; margin: 20px 0;">
+                <p>This is a demonstration element. Use the buttons below to change its style.</p>
+            </div>
+            
+            <h3>Change Background Color</h3>
+            <button onclick="changeBgColor('#e74c3c')">Red</button>
+            <button onclick="changeBgColor('#2ecc71')">Green</button>
+            <button onclick="changeBgColor('#3498db')">Blue</button>
+            <button onclick="changeBgColor('#f1c40f')">Yellow</button>
+            <button onclick="changeBgColor('white')">Reset</button>
+            
+            <h3>Change Text Style</h3>
+            <button onclick="changeTextColor('#2c3e50')">Dark Text</button>
+            <button onclick="changeTextColor('#e74c3c')">Red Text</button>
+            <button onclick="toggleItalic()">Toggle Italic</button>
+            <button onclick="toggleBold()">Toggle Bold</button>
+            
+            <h3>Change Border</h3>
+            <button onclick="addBorder()">Add Border</button>
+            <button onclick="changeBorderRadius()">Rounded Corners</button>
+            <button onclick="removeBorder()">Remove Border</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        const demoElement = document.getElementById('styleDemo');
+        
+        function changeBgColor(color) {
+            demoElement.style.backgroundColor = color;
+        }
+        
+        function changeTextColor(color) {
+            demoElement.style.color = color;
+        }
+        
+        function toggleItalic() {
+            demoElement.style.fontStyle = 
+                demoElement.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        }
+        
+        function toggleBold() {
+            demoElement.style.fontWeight = 
+                demoElement.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        }
+        
+        function addBorder() {
+            demoElement.style.border = '2px solid #2c3e50';
+        }
+        
+        function changeBorderRadius() {
+            demoElement.style.borderRadius = 
+                demoElement.style.borderRadius === '10px' ? '0' : '10px';
+        }
+        
+        function removeBorder() {
+            demoElement.style.border = 'none';
+            demoElement.style.borderRadius = '0';
+        }
+    </script>
+</body>
+</html>
