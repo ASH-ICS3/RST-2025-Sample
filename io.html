@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input/Output</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Input/Output (I/O)</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is Input/Output?</h2>
+            <p>Input/Output (I/O) refers to how websites take information from users (input) and present information back (output).</p>
+            <p>In web development, common input methods include forms, prompts, and event listeners. Output methods include displaying content on the page, alerts, and console logging.</p>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>HTML Forms</h3>
+            <pre><code>&lt;form id="userForm"&gt;
+    &lt;input type="text" id="username" placeholder="Enter your name"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="output"&gt;&lt;/div&gt;</code></pre>
+
+            <h3>JavaScript I/O Methods</h3>
+            <pre><code>// Getting input
+const name = prompt("What's your name?");
+
+// Output methods
+alert("Hello, " + name);
+console.log("User name:", name);
+document.getElementById("output").innerHTML = "Welcome, " + name;</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            <form id="userForm">
+                <input type="text" id="username" placeholder="Enter your name">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="output" class="result"></div>
+            <button onclick="showPrompt()">Try prompt()</button>
+            <button onclick="showAlert()">Try alert()</button>
+            <button onclick="logToConsole()">Try console.log()</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('username').value;
+            document.getElementById('output').innerHTML = `Hello, ${name}! Welcome to our website.`;
+        });
+
+        function showPrompt() {
+            const name = prompt("What's your name?");
+            if (name) {
+                document.getElementById('output').innerHTML = `Prompt response: ${name}`;
+            }
+        }
+
+        function showAlert() {
+            alert("This is an alert box!");
+            document.getElementById('output').innerHTML = "You just saw an alert!";
+        }
+
+        function logToConsole() {
+            console.log("This message is logged to the console.");
+            document.getElementById('output').innerHTML = "Message logged to console. Check your browser's developer tools.";
+        }
+    </script>
+</body>
+</html>
