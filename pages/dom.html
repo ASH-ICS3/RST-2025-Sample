@@ -18,4 +18,153 @@
                 <li><a href="functions.html">Functions</a></li>
                 <li><a href="loops.html">Loops</a></li>
                 <li><a href="conditionals.html">Conditionals</a></li>
-                <li><a href="arrays.html">Arrays
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What is the DOM?</h2>
+            <p>The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content.</p>
+            <p>JavaScript can manipulate the DOM to dynamically change the content and appearance of a web page.</p>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>Selecting Elements</h3>
+            <pre><code>// By ID
+const element = document.getElementById('myId');
+
+// By class name
+const elements = document.getElementsByClassName('myClass');
+
+// By tag name
+const divs = document.getElementsByTagName('div');
+
+// Using CSS selectors
+const item = document.querySelector('.container > p');
+const allItems = document.querySelectorAll('.item');</code></pre>
+
+            <h3>Modifying Elements</h3>
+            <pre><code>// Change content
+element.textContent = 'New text';
+element.innerHTML = '&lt;strong&gt;Bold text&lt;/strong&gt;';
+
+// Change attributes
+element.setAttribute('src', 'new-image.jpg');
+
+// Change styles
+element.style.color = 'red';
+element.style.fontSize = '20px';</code></pre>
+
+            <h3>Creating/Removing Elements</h3>
+            <pre><code>// Create new element
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Hello!';
+
+// Add to DOM
+document.body.appendChild(newDiv);
+
+// Remove element
+element.remove();</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            
+            <h3>Element Creator</h3>
+            <select id="elementType">
+                <option value="p">Paragraph</option>
+                <option value="div">Div</option>
+                <option value="span">Span</option>
+                <option value="h3">Heading 3</option>
+                <option value="button">Button</option>
+            </select>
+            <input type="text" id="elementText" placeholder="Element text">
+            <button onclick="createElement()">Create Element</button>
+            <button onclick="clearElements()">Clear All</button>
+            <div id="elementContainer" style="margin: 20px 0; min-height: 100px; border: 1px dashed #ccc; padding: 10px;"></div>
+            
+            <h3>Style Modifier</h3>
+            <div id="styleTarget" style="padding: 20px; background-color: #f0f0f0; margin: 10px 0;">
+                This element's style can be modified.
+            </div>
+            <button onclick="changeColor()">Change Color</button>
+            <button onclick="changeSize()">Change Font Size</button>
+            <button onclick="toggleBorder()">Toggle Border</button>
+            <button onclick="resetStyles()">Reset Styles</button>
+            
+            <h3>Content Updater</h3>
+            <div id="contentTarget" class="result">Original content</div>
+            <input type="text" id="newContent" placeholder="New content">
+            <button onclick="updateContent()">Update Content</button>
+            <button onclick="updateHTML()">Update as HTML</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Mr J's ICS Learning Hub</p>
+    </footer>
+    <script>
+        function createElement() {
+            const type = document.getElementById('elementType').value;
+            const text = document.getElementById('elementText').value;
+            
+            if (!text) {
+                alert("Please enter some text!");
+                return;
+            }
+            
+            const element = document.createElement(type);
+            element.textContent = text;
+            
+            if (type === 'button') {
+                element.onclick = function() {
+                    this.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                };
+            }
+            
+            document.getElementById('elementContainer').appendChild(element);
+            document.getElementById('elementText').value = '';
+        }
+        
+        function clearElements() {
+            document.getElementById('elementContainer').innerHTML = '';
+        }
+        
+        function changeColor() {
+            const target = document.getElementById('styleTarget');
+            target.style.color = target.style.color === 'red' ? 'blue' : 'red';
+        }
+        
+        function changeSize() {
+            const target = document.getElementById('styleTarget');
+            target.style.fontSize = target.style.fontSize === '20px' ? '14px' : '20px';
+        }
+        
+        function toggleBorder() {
+            const target = document.getElementById('styleTarget');
+            target.style.border = target.style.border ? '' : '3px solid green';
+        }
+        
+        function resetStyles() {
+            const target = document.getElementById('styleTarget');
+            target.style = '';
+        }
+        
+        function updateContent() {
+            const newContent = document.getElementById('newContent').value;
+            if (newContent) {
+                document.getElementById('contentTarget').textContent = newContent;
+            }
+        }
+        
+        function updateHTML() {
+            const newContent = document.getElementById('newContent').value;
+            if (newContent) {
+                document.getElementById('contentTarget').innerHTML = 
+                    `<strong>${newContent}</strong>`;
+            }
+        }
+    </script>
+</body>
+</html>
