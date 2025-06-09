@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Functions</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What are Functions?</h2>
+            <p>Functions are reusable blocks of code that perform a specific task. They help organize code, avoid repetition, and make programs easier to understand and maintain.</p>
+            <p>Functions can take parameters (inputs) and return values (outputs), but they don't have to.</p>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>Function Declaration</h3>
+            <pre><code>// Function without parameters
+function greet() {
+    console.log("Hello, world!");
+}
+
+// Function with parameters
+function greetPerson(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+// Function with return value
+function add(a, b) {
+    return a + b;
+}</code></pre>
+
+            <h3>Function Expression</h3>
+            <pre><code>const multiply = function(a, b) {
+    return a * b;
+};</code></pre>
+
+            <h3>Arrow Function (ES6+)</h3>
+            <pre><code>const square = (x) => {
+    return x * x;
+};
+
+// Or even shorter:
+const square = x => x * x;</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            
+            <h3>Simple Calculator</h3>
+            <input type="number" id="num1" placeholder="First number">
+            <input type="number" id="num2" placeholder="Second number">
+            
+            <button onclick="performOperation('add')">Add</button>
+            <button onclick="performOperation('subtract')">Subtract</button>
+            <button onclick="performOperation('multiply')">Multiply</button>
+            <button onclick="performOperation('divide')">Divide</button>
+            
+            <div id="calcResult" class="result"></div>
+            
+            <h3>Greeting Generator</h3>
+            <input type="text" id="userName" placeholder="Your name">
+            <select id="timeOfDay">
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+            </select>
+            <button onclick="generateGreeting()">Generate Greeting</button>
+            
+            <div id="greetingResult" class="result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        // Calculator functions
+        function add(a, b) {
+            return a + b;
+        }
+        
+        function subtract(a, b) {
+            return a - b;
+        }
+        
+        function multiply(a, b) {
+            return a * b;
+        }
+        
+        function divide(a, b) {
+            if (b === 0) return "Cannot divide by zero!";
+            return a / b;
+        }
+        
+        function performOperation(operation) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calcResult').innerHTML = "Please enter valid numbers!";
+                return;
+            }
+            
+            let result;
+            switch(operation) {
+                case 'add':
+                    result = add(num1, num2);
+                    break;
+                case 'subtract':
+                    result = subtract(num1, num2);
+                    break;
+                case 'multiply':
+                    result = multiply(num1, num2);
+                    break;
+                case 'divide':
+                    result = divide(num1, num2);
+                    break;
+            }
+            
+            document.getElementById('calcResult').innerHTML = `Result: ${result}`;
+        }
+        
+        // Greeting generator
+        function generateGreeting() {
+            const name = document.getElementById('userName').value || "there";
+            const time = document.getElementById('timeOfDay').value;
+            
+            let greeting;
+            switch(time) {
+                case 'morning':
+                    greeting = `Good morning, ${name}! Rise and shine!`;
+                    break;
+                case 'afternoon':
+                    greeting = `Good afternoon, ${name}! Hope you're having a great day!`;
+                    break;
+                case 'evening':
+                    greeting = `Good evening, ${name}! Time to relax!`;
+                    break;
+            }
+            
+            document.getElementById('greetingResult').innerHTML = greeting;
+        }
+    </script>
+</body>
+</html>
