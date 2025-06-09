@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Variables</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What are Variables?</h2>
+            <p>Variables are containers for storing data values. In JavaScript, you can declare variables using <code>let</code>, <code>const</code>, or <code>var</code>.</p>
+            <ul>
+                <li><code>let</code>: Block-scoped, can be reassigned</li>
+                <li><code>const</code>: Block-scoped, cannot be reassigned</li>
+                <li><code>var</code>: Function-scoped, older way (avoid in modern code)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>Variable Declaration</h3>
+            <pre><code>// Number
+let age = 25;
+
+// String
+const name = "Alice";
+
+// Boolean
+var isStudent = true;
+
+// Array
+let hobbies = ["reading", "coding", "hiking"];
+
+// Object
+const person = {
+    name: "Bob",
+    age: 30
+};</code></pre>
+
+            <h3>Variable Reassignment</h3>
+            <pre><code>let count = 0;
+count = 1;  // Valid with let
+
+const pi = 3.14;
+pi = 3.14159;  // Error! const can't be reassigned</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            <p>Current variable values:</p>
+            <div id="varDisplay" class="result"></div>
+            
+            <button onclick="incrementCount()">Increment Count (let)</button>
+            <button onclick="changeName()">Change Name (let)</button>
+            <button onclick="showConstError()">Try to Change PI (const)</button>
+            
+            <div id="errorDisplay" class="result" style="color: red;"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        // Declare variables
+        let count = 0;
+        let userName = "Visitor";
+        const PI = 3.14;
+        
+        // Display initial values
+        updateDisplay();
+        
+        function updateDisplay() {
+            document.getElementById('varDisplay').innerHTML = `
+                <p>count (let): ${count}</p>
+                <p>userName (let): "${userName}"</p>
+                <p>PI (const): ${PI}</p>
+            `;
+        }
+        
+        function incrementCount() {
+            count++;
+            updateDisplay();
+            document.getElementById('errorDisplay').innerHTML = "";
+        }
+        
+        function changeName() {
+            userName = prompt("Enter a new name:", userName) || userName;
+            updateDisplay();
+            document.getElementById('errorDisplay').innerHTML = "";
+        }
+        
+        function showConstError() {
+            try {
+                PI = 3.14159;  // This will cause an error
+            } catch (error) {
+                document.getElementById('errorDisplay').innerHTML = 
+                    `Error: ${error.message}`;
+            }
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
