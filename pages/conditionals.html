@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Statements</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Conditional Statements</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What are Conditional Statements?</h2>
+            <p>Conditional statements are used to perform different actions based on different conditions.</p>
+            <p>JavaScript has the following conditional statements:</p>
+            <ul>
+                <li><code>if</code> - executes code if a condition is true</li>
+                <li><code>else</code> - executes code if the same condition is false</li>
+                <li><code>else if</code> - specifies a new condition to test if the first condition is false</li>
+                <li><code>switch</code> - selects one of many code blocks to execute</li>
+                <li><code>ternary operator</code> - shorthand for simple if/else statements</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>If/Else Statement</h3>
+            <pre><code>let age = 18;
+
+if (age >= 18) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are a minor.");
+}</code></pre>
+
+            <h3>Else If Statement</h3>
+            <pre><code>let time = 14;
+
+if (time < 12) {
+    console.log("Good morning!");
+} else if (time < 18) {
+    console.log("Good afternoon!");
+} else {
+    console.log("Good evening!");
+}</code></pre>
+
+            <h3>Switch Statement</h3>
+            <pre><code>let day = 3;
+let dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    // ... more cases ...
+    default:
+        dayName = "Unknown day";
+}</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            
+            <h3>Age Checker</h3>
+            <input type="number" id="userAge" placeholder="Enter your age">
+            <button onclick="checkAge()">Check Age</button>
+            <div id="ageResult" class="result"></div>
+            
+            <h3>Light Switch</h3>
+            <button onclick="toggleLight()">Toggle Light</button>
+            <div id="lightBulb" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px auto; background-color: black;"></div>
+            
+            <h3>Simple Quiz</h3>
+            <p>What is the capital of France?</p>
+            <input type="text" id="quizAnswer" placeholder="Your answer">
+            <button onclick="checkQuiz()">Submit Answer</button>
+            <div id="quizResult" class="result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        let isLightOn = false;
+        
+        function checkAge() {
+            const age = parseInt(document.getElementById('userAge').value);
+            let message;
+            
+            if (isNaN(age)) {
+                message = "Please enter a valid age!";
+            } else if (age < 0) {
+                message = "Age cannot be negative!";
+            } else if (age < 13) {
+                message = "You are a child.";
+            } else if (age < 18) {
+                message = "You are a teenager.";
+            } else if (age < 65) {
+                message = "You are an adult.";
+            } else {
+                message = "You are a senior citizen.";
+            }
+            
+            document.getElementById('ageResult').innerHTML = message;
+        }
+        
+        function toggleLight() {
+            const lightBulb = document.getElementById('lightBulb');
+            isLightOn = !isLightOn;
+            
+            if (isLightOn) {
+                lightBulb.style.backgroundColor = "yellow";
+                lightBulb.style.boxShadow = "0 0 20px yellow";
+            } else {
+                lightBulb.style.backgroundColor = "black";
+                lightBulb.style.boxShadow = "none";
+            }
+        }
+        
+        function checkQuiz() {
+            const answer = document.getElementById('quizAnswer').value.trim().toLowerCase();
+            let result;
+            
+            if (answer === "paris") {
+                result = "Correct! Paris is the capital of France.";
+            } else if (answer === "") {
+                result = "Please enter an answer!";
+            } else {
+                result = "Incorrect. Try again!";
+            }
+            
+            document.getElementById('quizResult').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
