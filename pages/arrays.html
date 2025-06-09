@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Arrays</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What are Arrays?</h2>
+            <p>Arrays are used to store multiple values in a single variable. They are a special type of object that can hold more than one value at a time.</p>
+            <p>Arrays are zero-indexed, meaning the first element is at index 0, the second at index 1, and so on.</p>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>Creating Arrays</h3>
+            <pre><code>// Array literal
+const fruits = ['apple', 'banana', 'orange'];
+
+// Array constructor
+const numbers = new Array(1, 2, 3);</code></pre>
+
+            <h3>Accessing Elements</h3>
+            <pre><code>const firstFruit = fruits[0];  // 'apple'
+const lastFruit = fruits[fruits.length - 1];  // 'orange'</code></pre>
+
+            <h3>Common Array Methods</h3>
+            <pre><code>// Add/remove elements
+fruits.push('grape');  // adds to end
+fruits.pop();          // removes from end
+fruits.unshift('kiwi'); // adds to beginning
+fruits.shift();        // removes from beginning
+
+// Other useful methods
+const sliced = fruits.slice(1, 3); // creates new array
+const index = fruits.indexOf('banana'); // finds index
+const joined = fruits.join(', '); // creates string</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            
+            <h3>Simple To-Do List</h3>
+            <input type="text" id="todoInput" placeholder="Enter a task">
+            <button onclick="addTodo()">Add Task</button>
+            <button onclick="clearTodos()">Clear All</button>
+            <div id="todoList" class="result"></div>
+            
+            <h3>Array Methods Demonstration</h3>
+            <div id="arrayDisplay" class="result">
+                Current array: <span id="arrayContent"></span><br>
+                Array length: <span id="arrayLength"></span>
+            </div>
+            <button onclick="demoPush()">push() - Add item</button>
+            <button onclick="demoPop()">pop() - Remove last item</button>
+            <button onclick="demoShift()">shift() - Remove first item</button>
+            <button onclick="demoUnshift()">unshift() - Add to front</button>
+            <button onclick="demoJoin()">join() - Create string</button>
+            <button onclick="demoReverse()">reverse() - Reverse array</button>
+            <div id="arrayResult" class="result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        // To-do list array
+        let todos = [];
+        
+        // Demo array
+        let demoArray = ['apple', 'banana', 'orange'];
+        updateArrayDisplay();
+        
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const task = input.value.trim();
+            
+            if (task) {
+                todos.push(task);
+                input.value = '';
+                renderTodoList();
+            }
+        }
+        
+        function clearTodos() {
+            todos = [];
+            renderTodoList();
+        }
+        
+        function renderTodoList() {
+            const todoList = document.getElementById('todoList');
+            
+            if (todos.length === 0) {
+                todoList.innerHTML = "No tasks yet!";
+                return;
+            }
+            
+            let html = "<ul>";
+            for (const todo of todos) {
+                html += `<li>${todo}</li>`;
+            }
+            html += "</ul>";
+            
+            todoList.innerHTML = html;
+        }
+        
+        function updateArrayDisplay() {
+            document.getElementById('arrayContent').textContent = 
+                `[${demoArray.join(', ')}]`;
+            document.getElementById('arrayLength').textContent = demoArray.length;
+        }
+        
+        function demoPush() {
+            const newItem = prompt("Enter an item to add to the end:");
+            if (newItem) {
+                demoArray.push(newItem);
+                updateArrayDisplay();
+                document.getElementById('arrayResult').innerHTML = 
+                    `Added "${newItem}" to the end of the array.`;
+            }
+        }
+        
+        function demoPop() {
+            if (demoArray.length === 0) {
+                document.getElementById('arrayResult').innerHTML = 
+                    "Array is empty!";
+                return;
+            }
+            
+            const removed = demoArray.pop();
+            updateArrayDisplay();
+            document.getElementById('arrayResult').innerHTML = 
+                `Removed "${removed}" from the end of the array.`;
+        }
+        
+        function demoShift() {
+            if (demoArray.length === 0) {
+                document.getElementById('arrayResult').innerHTML = 
+                    "Array is empty!";
+                return;
+            }
+            
+            const removed = demoArray.shift();
+            updateArrayDisplay();
+            document.getElementById('arrayResult').innerHTML = 
+                `Removed "${removed}" from the beginning of the array.`;
+        }
+        
+        function demoUnshift() {
+            const newItem = prompt("Enter an item to add to the beginning:");
+            if (newItem) {
+                demoArray.unshift(newItem);
+                updateArrayDisplay();
+                document.getElementById('arrayResult').innerHTML = 
+                    `Added "${newItem}" to the beginning of the array.`;
+            }
+        }
+        
+        function demoJoin() {
+            const separator = prompt("Enter separator (default is comma):", ",");
+            const joined = demoArray.join(separator || ",");
+            document.getElementById('arrayResult').innerHTML = 
+                `Joined array: "${joined}"`;
+        }
+        
+        function demoReverse() {
+            demoArray.reverse();
+            updateArrayDisplay();
+            document.getElementById('arrayResult').innerHTML = 
+                "Array has been reversed.";
+        }
+    </script>
+</body>
+</html>
