@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Loops (Iteration)</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="io.html">I/O</a></li>
+                <li><a href="variables.html">Variables</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="conditionals.html">Conditionals</a></li>
+                <li><a href="dom.html">DOM Manipulation</a></li>
+                <li><a href="arrays.html">Arrays</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>What are Loops?</h2>
+            <p>Loops are used in programming to repeat a block of code multiple times. They help automate repetitive tasks and process collections of data.</p>
+            <p>JavaScript has several types of loops:</p>
+            <ul>
+                <li><code>for</code> - loops through a block of code a number of times</li>
+                <li><code>while</code> - loops through a block of code while a condition is true</li>
+                <li><code>do...while</code> - similar to while but runs at least once</li>
+                <li><code>for...in</code> - loops through the properties of an object</li>
+                <li><code>for...of</code> - loops through the values of an iterable object</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Code Examples</h2>
+            <h3>For Loop</h3>
+            <pre><code>// Count from 1 to 5
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}</code></pre>
+
+            <h3>While Loop</h3>
+            <pre><code>// Countdown from 5
+let count = 5;
+while (count > 0) {
+    console.log(count);
+    count--;
+}</code></pre>
+
+            <h3>Looping Through Arrays</h3>
+            <pre><code>const fruits = ['apple', 'banana', 'orange'];
+
+// for loop
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+// for...of loop
+for (const fruit of fruits) {
+    console.log(fruit);
+}</code></pre>
+        </section>
+
+        <section class="demo-area">
+            <h2>Interactive Demo</h2>
+            
+            <h3>Count with For Loop</h3>
+            <input type="number" id="forLimit" placeholder="Enter a number" value="5">
+            <button onclick="runForLoop()">Run For Loop</button>
+            <div id="forOutput" class="result"></div>
+            
+            <h3>Countdown with While Loop</h3>
+            <input type="number" id="whileLimit" placeholder="Enter a number" value="5">
+            <button onclick="runWhileLoop()">Run While Loop</button>
+            <div id="whileOutput" class="result"></div>
+            
+            <h3>Generate Multiplication Table</h3>
+            <input type="number" id="tableNumber" placeholder="Enter a number" value="5">
+            <button onclick="generateTable()">Generate Table</button>
+            <div id="tableOutput" class="result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 CS Learning Hub</p>
+    </footer>
+    <script>
+        function runForLoop() {
+            const limit = parseInt(document.getElementById('forLimit').value);
+            let output = "";
+            
+            for (let i = 1; i <= limit; i++) {
+                output += `Count: ${i}<br>`;
+            }
+            
+            document.getElementById('forOutput').innerHTML = output || "Please enter a valid number!";
+        }
+        
+        function runWhileLoop() {
+            const limit = parseInt(document.getElementById('whileLimit').value);
+            let output = "";
+            let count = limit;
+            
+            while (count > 0) {
+                output += `Countdown: ${count}<br>`;
+                count--;
+            }
+            
+            output += "Liftoff!";
+            document.getElementById('whileOutput').innerHTML = output || "Please enter a valid number!";
+        }
+        
+        function generateTable() {
+            const number = parseInt(document.getElementById('tableNumber').value);
+            let output = `<h4>Multiplication Table for ${number}</h4>`;
+            
+            if (isNaN(number)) {
+                document.getElementById('tableOutput').innerHTML = "Please enter a valid number!";
+                return;
+            }
+            
+            for (let i = 1; i <= 10; i++) {
+                output += `${number} × ${i} = ${number * i}<br>`;
+            }
+            
+            document.getElementById('tableOutput').innerHTML = output;
+        }
+    </script>
+</body>
+</html>
